@@ -4,6 +4,7 @@ import ru.netology.domain.Offer;
 import ru.netology.repository.OfferRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class OfferManager {
 
@@ -23,7 +24,7 @@ public class OfferManager {
         repository.removeById(id);
     }
 
-    public Offer[] getAll(String from, String to) {
+    public Offer[] getAll(String from, String to, Comparator<Offer> comparator) {
         Offer[] result = new Offer[0];
         for (Offer product : repository.findAll()) {
             if (product.getTo().equals(to) & product.getFrom().equals(from)) {
@@ -33,7 +34,8 @@ public class OfferManager {
                 result = tmp;
             }
         }
-        Arrays.sort(result);
+        Arrays.sort(result, comparator);
+//        Arrays.sort(result);
         return result;
     }
 }
