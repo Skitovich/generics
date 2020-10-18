@@ -34,6 +34,7 @@ public class OfferManager {
                 result = tmp;
             }
         }
+//        Arrays.sort(result);
         Arrays.sort(result, comparator);
         return result;
     }

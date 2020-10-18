@@ -7,18 +7,19 @@ import ru.netology.repository.OfferRepository;
 
 import java.util.Comparator;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class OfferManagerTest {
 
-    private final OfferRepository repository = new OfferRepository();
-    private final OfferManager manager = new OfferManager(repository);
+    private Offer offer = new Offer();
+    private OfferRepository repository = new OfferRepository();
+    private OfferManager manager = new OfferManager(repository);
 
 
-    private final Offer first = new Offer(1, 100, "SVO", "SIP", 100);
-    private final Offer second = new Offer(2, 500, "DME", "KRS", 110);
-    private final Offer third = new Offer(3, 400, "KRS", "DME", 120);
-    private final Offer forth = new Offer(4, 450, "DME", "KRS", 130);
+    private Offer first = new Offer(1,100,"SVO","SIP",120);
+    private Offer second = new Offer(2,400,"DME","KRS",120);
+    private Offer third = new Offer(3,400,"KRS","DME",120);
+    private Offer forth = new Offer (4,350,"DME","KRS",120);
 
 
     @BeforeEach
@@ -31,32 +32,33 @@ class OfferManagerTest {
     }
 
     @Test
-    void getAllTwoOfferMatches() {
+    void getAll() {
 
-        Offer[] expected = new Offer[]{second, forth};
-        Offer[] actual = manager.getAll("DME", "KRS", Comparator.comparing(Offer::getFlightTIme));
-
+        Offer[] expected = new Offer[]{forth,second};
+        Offer[] actual = manager.getAll("DME","KRS", Comparator.comparing(Offer::getFlightTIme));
         assertArrayEquals(expected, actual);
     }
-
     @Test
     void getAllIfNoMatches() {
+
         Offer[] expected = new Offer[]{};
-        Offer[] actual = manager.getAll("VNK", "KRS", Comparator.comparing(Offer::getFlightTIme));
+        Offer[] actual = manager.getAll("VNK","KRS", Comparator.comparing(Offer::getFlightTIme));
         assertArrayEquals(expected, actual);
     }
 
     @Test
     void getAllIfOneOfAirportMatches() {
+
         Offer[] expected = new Offer[]{};
-        Offer[] actual = manager.getAll("SVO", "DME", Comparator.comparing(Offer::getFlightTIme));
+        Offer[] actual = manager.getAll("SVO","DME", Comparator.comparing(Offer::getFlightTIme));
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    void getAllIfOneOfferMatches() {
+    void getAllIfOneMatch() {
+
         Offer[] expected = new Offer[]{first};
-        Offer[] actual = manager.getAll("SVO", "SIP", Comparator.comparing(Offer::getFlightTIme));
+        Offer[] actual = manager.getAll("SVO","SIP", Comparator.comparing(Offer::getFlightTIme));
         assertArrayEquals(expected, actual);
     }
 
