@@ -35,7 +35,6 @@ public class OfferManager {
             }
         }
         Arrays.sort(result, comparator);
-//        Arrays.sort(result);
         return result;
     }
 }
