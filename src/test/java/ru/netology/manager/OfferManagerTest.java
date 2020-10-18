@@ -4,10 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Offer;
 import ru.netology.repository.OfferRepository;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class OfferManagerTest {
@@ -48,10 +44,18 @@ class OfferManagerTest {
     }
 
     @Test
-    void getAllIfOneMatches() {
+    void getAllIfOneOfAirportMatches() {
 
         Offer[] expected = new Offer[]{};
         Offer[] actual = manager.getAll("SVO","DME");;
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void getAllIfOneMatch() {
+
+        Offer[] expected = new Offer[]{first};
+        Offer[] actual = manager.getAll("SVO","SIP");;
         assertArrayEquals(expected, actual);
     }
 
