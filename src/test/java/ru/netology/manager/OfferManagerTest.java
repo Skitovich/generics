@@ -8,7 +8,6 @@ import ru.netology.repository.OfferRepository;
 import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 class OfferManagerTest {
 
     private Offer offer = new Offer();
