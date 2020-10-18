@@ -16,10 +16,10 @@ class OfferManagerTest {
     private OfferManager manager = new OfferManager(repository);
 
 
-    private Offer first = new Offer(1, 100, "SVO", "SIP", 120);
-    private Offer second = new Offer(2, 400, "DME", "KRS", 120);
+    private Offer first = new Offer(1, 100, "SVO", "SIP", 100);
+    private Offer second = new Offer(2, 400, "DME", "KRS", 110);
     private Offer third = new Offer(3, 400, "KRS", "DME", 120);
-    private Offer forth = new Offer(4, 350, "DME", "KRS", 120);
+    private Offer forth = new Offer(4, 350, "DME", "KRS", 130);
 
 
     @BeforeEach
@@ -34,7 +34,7 @@ class OfferManagerTest {
     @Test
     void getAll() {
 
-        Offer[] expected = new Offer[]{forth, second};
+        Offer[] expected = new Offer[]{second, forth};
         Offer[] actual = manager.getAll("DME", "KRS", Comparator.comparing(Offer::getFlightTIme));
         assertArrayEquals(expected, actual);
     }
